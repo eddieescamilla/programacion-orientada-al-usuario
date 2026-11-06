@@ -1,0 +1,247 @@
+/* ===== Base ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f7f3f5;
+  color: #2b2236;
+  line-height: 1.5;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+/* ===== Encabezado ===== */
+.encabezado {
+  background-color: #1f2a5a;
+  color: #ffffff;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+}
+
+.subtitulo {
+  margin: 0.35rem 0 0;
+  opacity: 0.85;
+}
+
+/* ===== Contenedor y paneles ===== */
+.contenedor {
+  max-width: 1050px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.panel {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(31, 42, 90, 0.08);
+}
+
+.nota {
+  margin: -0.5rem 0 1rem;
+  font-size: 0.9rem;
+  color: #6b6478;
+}
+
+/* ===== Formulario ===== */
+#formulario-producto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1 1 180px;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+input,
+select {
+  padding: 0.55rem 0.7rem;
+  border: 1px solid #cfc7d6;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid #c2185b;
+  outline-offset: 1px;
+}
+
+.mensaje-error {
+  margin: 0.75rem 0 0;
+  min-height: 1.5rem;
+  color: #b00020;
+  font-weight: 600;
+}
+
+/* ===== Botones ===== */
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-principal {
+  background-color: #c2185b;
+  color: #ffffff;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+}
+
+.btn-principal:hover {
+  background-color: #a3134c;
+}
+
+.btn-estado {
+  background-color: #e8eaf6;
+  color: #1f2a5a;
+}
+
+.btn-estado:hover {
+  background-color: #d3d7ef;
+}
+
+.btn-eliminar {
+  background-color: #fdecee;
+  color: #b00020;
+}
+
+.btn-eliminar:hover {
+  background-color: #f9d3d8;
+}
+
+/* ===== Indicadores ===== */
+.indicadores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1rem;
+}
+
+.indicador {
+  background-color: #fbeff4;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.indicador-etiqueta {
+  font-size: 0.85rem;
+  color: #6b6478;
+}
+
+.indicador-valor {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1f2a5a;
+}
+
+/* ===== Tabla ===== */
+.barra-tabla {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.barra-tabla h2 {
+  margin-bottom: 0;
+}
+
+.campo-filtro {
+  flex: 0 1 240px;
+}
+
+.tabla-desplazable {
+  overflow-x: auto;
+}
+
+.tabla-inventario {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.tabla-inventario th,
+.tabla-inventario td {
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #eee7ef;
+}
+
+.tabla-inventario th {
+  background-color: #1f2a5a;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.tabla-inventario tbody tr:hover {
+  background-color: #faf7fb;
+}
+
+.celda-acciones {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Estado del producto */
+.estado-disponible {
+  color: #1b7a3d;
+  font-weight: 600;
+}
+
+.estado-agotado {
+  color: #b00020;
+  font-weight: 600;
+}
+
+/* Fila de un producto agotado */
+.fila-agotada {
+  background-color: #f4f1f4;
+  color: #8a8293;
+}
+
+.fila-agotada td:first-child {
+  text-decoration: line-through;
+}
+
+/* ===== Estado vacío ===== */
+.mensaje-vacio {
+  text-align: center;
+  padding: 1.5rem;
+  margin: 0;
+  color: #6b6478;
+  font-style: italic;
+}
