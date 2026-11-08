@@ -1,3 +1,15 @@
+/* ===== Paleta (Inspirada en la foto del encabezado) ===== */
+:root {
+  --azul-marino: #1b2a55;
+  --azul-cuadros: #2c5fa8;
+  --turquesa: #4fa9c4;
+  --turquesa-claro: #e3f2f7;
+  --crema: #f7f2e9;
+  --crema-oscuro: #ece3d3;
+  --dorado: #c08a3e;
+  --transicion: 0.2s ease;
+}
+
 /* ===== Base ===== */
 * {
   box-sizing: border-box;
@@ -6,8 +18,8 @@
 body {
   margin: 0;
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: #f7f3f5;
-  color: #2b2236;
+  background-color: var(--crema);
+  color: #232a3d;
   line-height: 1.5;
 }
 
@@ -19,19 +31,84 @@ h2 {
 h2 {
   font-size: 1.15rem;
   margin-bottom: 1rem;
+  color: var(--azul-marino);
+
 }
 
-/* ===== Encabezado ===== */
+/* ===== Encabezado con imagen ===== */
 .encabezado {
-  background-color: #1f2a5a;
+  background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-cuadros) 100%);
   color: #ffffff;
-  padding: 1.75rem 1.5rem;
-  text-align: center;
+  padding: 2rem 1.5rem;
+  border-bottom: 4px solid var(--dorado);
+}
+
+/* Texto a la izquierda e imagen a la derecha */
+.encabezado-contenido {
+  max-width: 1050px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.encabezado-texto {
+  flex: 1 1 320px;
+}
+
+.encabezado-etiqueta {
+  margin: 0 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.8rem;
+  color: var(--dorado);
+  font-weight: 700;
+}
+
+.encabezado h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 .subtitulo {
-  margin: 0.35rem 0 0;
-  opacity: 0.85;
+  margin: 0.5rem 0 0;
+  opacity: 0.9;
+  font-size: 1.05rem;
+}
+
+/* Imagen vertical recortada como tarjeta */
+.encabezado-imagen {
+  margin: 0;
+  flex: 0 0 220px;
+  text-align: center;
+}
+
+.encabezado-imagen img {
+  display: block;
+  width: 220px;
+  height: 260px;
+  object-fit: cover;
+  object-position: center 60%;
+  border-radius: 16px;
+  border: 3px solid #ffffff;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+
+/* Hover: la imagen crece un poco y se inclina */
+.encabezado-imagen img:hover {
+  transform: scale(1.04) rotate(-1deg);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+}
+
+.encabezado-imagen figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  opacity: 0.75;
 }
 
 /* ===== Contenedor y paneles ===== */
@@ -46,9 +123,10 @@ h2 {
 
 .panel {
   background-color: #ffffff;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 1.25rem 1.5rem;
-  box-shadow: 0 2px 8px rgba(31, 42, 90, 0.08);
+  box-shadow: 0 2px 10px rgba(27, 42, 85, 0.08);
+  border-top: 4px solid var(--turquesa);
 }
 
 .nota {
@@ -80,16 +158,26 @@ label {
 input,
 select {
   padding: 0.55rem 0.7rem;
-  border: 1px solid #cfc7d6;
+  border: 1px solid var(--crema-oscuro);
   border-radius: 8px;
   font-size: 0.95rem;
   font-family: inherit;
+  background-color: #ffffff;
+  transition: border-color var(--transicion), box-shadow var(--transicion);
 }
 
+/* Hover: el borde se pinta de turquesa al pasar el mouse */
+input:hover,
+select:hover {
+  border-color: var(--turquesa);
+}
+
+/* Focus: al hacer clic en el campo aparece un halo azul */
 input:focus,
 select:focus {
-  outline: 2px solid #c2185b;
-  outline-offset: 1px;
+  outline: none;
+  border-color: var(--azul-cuadros);
+  box-shadow: 0 0 0 3px rgba(79, 169, 196, 0.3);
 }
 
 .mensaje-error {
@@ -108,35 +196,51 @@ select:focus {
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
+  transition: background-color var(--transicion), transform var(--transicion), box-shadow var(--transicion);
 }
 
+/* Hover: todos los botones se elevan un poco */
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(27, 42, 85, 0.15);
+}
+
+/* Active: al hacer clic, el botón vuelve a su lugar, como si se presionara */
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Botón Agregar producto: azul marino, se aclara al pasar el mouse */
 .btn-principal {
-  background-color: #c2185b;
+  background-color: var(--azul-marino);
   color: #ffffff;
   padding: 0.6rem 1.2rem;
   font-size: 0.95rem;
 }
 
 .btn-principal:hover {
-  background-color: #a3134c;
+  background-color: var(--azul-cuadros);
 }
 
+/* Botón Marcar agotado / disponible: turquesa claro */
 .btn-estado {
-  background-color: #e8eaf6;
-  color: #1f2a5a;
+  background-color: var(--turquesa-claro);
+  color: var(--azul-marino);
 }
 
 .btn-estado:hover {
-  background-color: #d3d7ef;
+  background-color: #c9e7f0;
 }
 
+/* Botón Eliminar: rojo suave */
 .btn-eliminar {
-  background-color: #fdecee;
-  color: #b00020;
+  background-color: #fbe9e7;
+  color: #b3261e;
 }
 
 .btn-eliminar:hover {
-  background-color: #f9d3d8;
+  background-color: #f6d2ce;
 }
 
 /* ===== Indicadores ===== */
@@ -147,11 +251,19 @@ select:focus {
 }
 
 .indicador {
-  background-color: #fbeff4;
-  border-radius: 10px;
+  background-color: var(--turquesa-claro);
+  border-radius: 12px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  border-left: 4px solid var(--azul-cuadros);
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+
+/* Hover: la tarjeta sube y gana sombra */
+.indicador:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(27, 42, 85, 0.16);
 }
 
 .indicador-etiqueta {
@@ -197,17 +309,23 @@ select:focus {
 .tabla-inventario td {
   padding: 0.65rem 0.75rem;
   text-align: left;
-  border-bottom: 1px solid #eee7ef;
+  border-bottom: 1px solid var(--crema-oscuro);
 }
 
 .tabla-inventario th {
-  background-color: #1f2a5a;
+  background-color: var(--azul-marino);
   color: #ffffff;
   font-weight: 600;
 }
 
+/* Transición suave del color de fondo de cada fila */
+.tabla-inventario tbody tr {
+  transition: background-color var(--transicion);
+}
+
+/* Hover: la fila se pinta de turquesa claro al pasar el mouse */
 .tabla-inventario tbody tr:hover {
-  background-color: #faf7fb;
+  background-color: var(--turquesa-claro);
 }
 
 .celda-acciones {
@@ -229,8 +347,13 @@ select:focus {
 
 /* Fila de un producto agotado */
 .fila-agotada {
-  background-color: #f4f1f4;
-  color: #8a8293;
+  background-color: #f3efe8;
+  color: #8a8578;
+}
+
+/* Hover de una fila agotada: se oscurece un poco en lugar de pintarse de turquesa */
+.tabla-inventario tbody tr.fila-agotada:hover {
+  background-color: var(--crema-oscuro);
 }
 
 .fila-agotada td:first-child {
@@ -244,4 +367,65 @@ select:focus {
   margin: 0;
   color: #6b6478;
   font-style: italic;
+}
+
+/* ===== Ventana de confirmación ===== */
+.dialogo {
+  border: none;
+  border-radius: 14px;
+  padding: 0;
+  max-width: 420px;
+  width: calc(100% - 2rem);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  border-top: 5px solid #b3261e;
+}
+
+/* Fondo oscuro detrás de la ventana */
+.dialogo::backdrop {
+  background-color: rgba(27, 42, 85, 0.55);
+}
+
+.dialogo-contenido {
+  padding: 1.5rem;
+}
+
+.dialogo h2 {
+  margin-bottom: 0.5rem;
+}
+
+.dialogo p {
+  margin: 0 0 1.25rem;
+  color: #6b6f7d;
+}
+
+.dialogo strong {
+  color: var(--azul-marino);
+}
+
+.dialogo-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* Botón Cancelar: crema, discreto */
+.btn-secundario {
+  background-color: var(--crema);
+  color: var(--azul-marino);
+  padding: 0.55rem 1.1rem;
+}
+
+.btn-secundario:hover {
+  background-color: var(--crema-oscuro);
+}
+
+/* Botón Sí, eliminar: rojo intenso, para dejar claro que es una acción destructiva */
+.btn-peligro {
+  background-color: #b3261e;
+  color: #ffffff;
+  padding: 0.55rem 1.1rem;
+}
+
+.btn-peligro:hover {
+  background-color: #8f1d17;
 }

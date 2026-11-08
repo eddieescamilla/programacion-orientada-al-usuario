@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,20 @@
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
+
 <body>
   <header class="encabezado">
-    <h1>Inventario de Bath &amp; Body Works</h1>
-    <p class="subtitulo">Mists, cremas corporales y geles de ducha</p>
+    <div class="encabezado-contenido">
+      <div class="encabezado-texto">
+        <p class="encabezado-etiqueta">Control de inventario</p>
+        <h1>Inventario de Bath &amp; Body Works</h1>
+        <p class="subtitulo">Mists, cremas corporales y geles de ducha</p>
+      </div>
+      <figure class="encabezado-imagen">
+        <img src="img/gingham-mist.jpg" alt="Frasco de fine fragrance mist Gingham sobre un fondo con luces cálidas">
+        <figcaption>Foto: Unsplash</figcaption>
+      </figure>
+    </div>
   </header>
 
   <main class="contenedor">
@@ -96,5 +107,19 @@
       <p id="mensaje-vacio" class="mensaje-vacio" hidden>No hay productos para mostrar en esta categoría.</p>
     </section>
   </main>
+
+  <!-- Ventana de confirmación antes de eliminar un producto -->
+  <dialog id="dialogo-eliminar" class="dialogo" aria-labelledby="titulo-dialogo">
+    <!-- El contenido va dentro de un div para distinguir un clic en el fondo oscuro (el dialog) de un clic dentro de la ventana -->
+    <div class="dialogo-contenido">
+      <h2 id="titulo-dialogo">¿Eliminar producto?</h2>
+      <p>Se eliminará <strong id="nombre-a-eliminar"></strong> del inventario. Esta acción no se puede deshacer.</p>
+      <div class="dialogo-acciones">
+        <button type="button" class="btn btn-secundario" data-accion="cancelar">Cancelar</button>
+        <button type="button" class="btn btn-peligro" data-accion="confirmar">Sí, eliminar</button>
+      </div>
+    </div>
+  </dialog>
 </body>
+
 </html>

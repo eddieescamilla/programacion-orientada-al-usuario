@@ -34,6 +34,11 @@ const indicadorTotalProductos = document.querySelector("#total-productos");
 const indicadorTotalUnidades = document.querySelector("#total-unidades");
 const indicadorValorTotal = document.querySelector("#valor-total");
 const indicadorTotalAgotados = document.querySelector("#total-agotados");
+const dialogoEliminar = document.getElementById("dialogo-eliminar");
+const nombreAEliminar = document.getElementById("nombre-a-eliminar");
+
+// Guarda el id del producto que espera confirmación para eliminarse.
+let idPendienteDeEliminar = null;
 
 /* =========================================================
    3. GENERADOR DE IDENTIFICADORES (cierre / closure)
@@ -408,10 +413,48 @@ function manejarClicEnTabla(event) {
   const id = Number(elementoClicado.getAttribute("data-id"));
 
   if (esBotonEliminar) {
-    procesarEliminacion(id);
+    solicitarConfirmacionEliminacion(id);
   } else {
     procesarCambioEstado(id);
   }
+}
+
+/* =========================================================
+   8.1 CONFIRMACIÓN ANTES DE ELIMINAR
+   ========================================================= */
+
+// Muestra la ventana de confirmación con el nombre del producto.
+function solicitarConfirmacionEliminacion(id) {
+  const producto = buscarProductoPorId(id);
+  if (producto === null) {
+    return;
+  }
+  idPendienteDeEliminar = id;
+  nombreAEliminar.textContent = producto.nombre;
+  dialogoEliminar.showModal();
+}
+
+function cerrarDialogoEliminar() {
+  dialogoEliminar.close();
+}
+
+// Un solo escuchador para toda la ventana: decide según el botón pulsado.
+function manejarClicEnDialogo(event) {
+  const accion = event.target.getAttribute("data-accion");
+
+  if (accion === "confirmar") {
+    procesarEliminacion(idPendienteDeEliminar);
+    cerrarDialogoEliminar();
+  } else if (accion === "cancelar" || event.target === dialogoEliminar) {
+    // event.target es el propio dialog cuando se hace clic en el fondo oscuro.
+    console.log("Eliminación cancelada");
+    cerrarDialogoEliminar();
+  }
+}
+
+// Se ejecuta al cerrar la ventana de cualquier forma (botones, Esc o clic afuera).
+function limpiarEliminacionPendiente() {
+  idPendienteDeEliminar = null;
 }
 
 /* =========================================================
@@ -429,6 +472,8 @@ function iniciar() {
   formularioProducto.addEventListener("submit", agregarProducto);
   cuerpoInventario.addEventListener("click", manejarClicEnTabla);
   selectorCategoria.addEventListener("change", manejarCambioFiltro);
+  dialogoEliminar.addEventListener("click", manejarClicEnDialogo);
+  dialogoEliminar.addEventListener("close", limpiarEliminacionPendiente);
   mostrarResumenEnConsola();
 }
 
